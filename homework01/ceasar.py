@@ -1,8 +1,20 @@
-def encrypt(plaintext, key):
+def encrypt_caesar(plaintext):
+    """
+    Encrypts plaintext using a Caesar cipher.
+
+    >>> encrypt_caesar("PYTHON")
+    'SBWKRQ'
+    >>> encrypt_caesar("python")
+    'sbwkrq'
+    >>> encrypt_caesar("Python3.6")
+    'Sbwkrq3.6'
+    >>> encrypt_caesar("")
+    ''
+    """
     ciphertext = ''
     
     for letter in plaintext:
-        replaced = ord(letter)+int(key)
+        replaced = ord(letter)+3
         if (ord(letter) < 65 or 90 < ord(letter) < 97 or ord(letter) > 122):  
             ciphertext += letter
         elif replaced > 90 and letter.isupper()==True:
@@ -20,11 +32,23 @@ def encrypt(plaintext, key):
             ciphertext += letter_encrypted
     return(ciphertext)
 
-def decrypt(ciphertext, key):
+def decrypt_caesar(ciphertext):
+    """
+    Decrypts a ciphertext using a Caesar cipher.
+
+    >>> decrypt_caesar("SBWKRQ")
+    'PYTHON'
+    >>> decrypt_caesar("sbwkrq")
+    'python'
+    >>> decrypt_caesar("Sbwkrq3.6")
+    'Python3.6'
+    >>> decrypt_caesar("")
+    ''
+    """
     plaintext = ''
     
     for letter in ciphertext:
-        replaced_back = ord(letter) - int(key)
+        replaced_back = ord(letter) - 3
         if (ord(letter) < 65 or 90 < ord(letter) < 97 or ord(letter) > 122):  
             plaintext += letter
         elif replaced_back < 65 and letter.isupper()==True:
@@ -41,10 +65,3 @@ def decrypt(ciphertext, key):
             letter_decrypted = chr(replaced_back)
             plaintext += letter_decrypted
     return(plaintext)
-
-plaintext = input('Enter a message: ')
-key = input('Enter a key : ')
-encrypted = encrypt(plaintext, key)
-decrypted = decrypt(encrypted, key)
-print(encrypted)
-print(decrypted)
