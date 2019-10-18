@@ -2,7 +2,6 @@ import random
 
 
 def is_prime(n):
-
     """
     Tests to see if a number is prime.
     >>> is_prime(2)
@@ -13,7 +12,7 @@ def is_prime(n):
     False
     """
     from math import sqrt
-    lisst=[]
+    lisst = []
     for i in range(2, n+1):
         for j in lisst:
             if j > int((sqrt(i)) + 1):
@@ -23,14 +22,14 @@ def is_prime(n):
                 break
         else:
             lisst.append(i)
-    print(lisst)        
-    for i in range(0,(len(lisst)-1)):
-        if n % lisst[i]==0:
-            res=False
+    print(lisst)
+    for i in range(0, (len(lisst)-1)):
+        if n % lisst[i] == 0:
+            res = False
             break
         else:
-            res=True
-    return res               
+            res = True
+    return res
 
 
 def gcd(a, b):
@@ -45,18 +44,18 @@ def gcd(a, b):
         if a > b:
             a = a - b
         else:
-            b = b - a        
+            b = b - a
     return a
 
 
 def multiplicative_inverse(e, phi):
-    x, xx, y, yy, phi1= 1, 0, 0, 1, phi
+    x, xx, y, yy, phi1 = 1, 0, 0, 1, phi
     while phi:
         q = e // phi
         e, phi = phi, e % phi
         x, xx = xx, x - xx*q
         y, yy = yy, y - yy*q
-    x=x % phi1   
+    x = x % phi1
     return (x)
 
 
@@ -65,13 +64,8 @@ def generate_keypair(p, q):
         raise ValueError('Both numbers must be prime.')
     elif p == q:
         raise ValueError('p and q cannot be equal')
-
     n = p*q
-    # PUT YOUR CODE HERE
-
     phi = (p-1)*(q-1)
-    # PUT YOUR CODE HERE
-
     # Choose an integer e such that e and phi(n) are coprime
     e = random.randrange(1, phi)
 

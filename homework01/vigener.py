@@ -9,15 +9,16 @@ def encrypt_vigenere(plaintext, keyword):
     >>> encrypt_vigenere("ATTACKATDAWN", "LEMON")
     'LXFOPVEFRNHR'
     """
-    
+
     difference = len(plaintext) // len(keyword)
     keyword *= difference + 1
     ciphertext = ''
     for index, letter in enumerate(plaintext):
         replaced = (ord(letter) + ord(keyword[index]))
-        encrypted  = chr(replaced % 26 + 65)
+        encrypted = chr(replaced % 26 + 65)
         ciphertext += encrypted
     return(ciphertext)
+
 
 def decrypt_vigenere(ciphertext, keyword):
     """
@@ -30,7 +31,7 @@ def decrypt_vigenere(ciphertext, keyword):
     >>> decrypt_vigenere("LXFOPVEFRNHR", "LEMON")
     'ATTACKATDAWN'
     """
-    
+
     difference = len(ciphertext) // len(keyword)
     keyword *= difference + 1
     plaintext = ''
@@ -39,4 +40,3 @@ def decrypt_vigenere(ciphertext, keyword):
         decrypted = chr(replaced_back % 26 + ord('A'))
         plaintext += decrypted
     return(plaintext)
-
